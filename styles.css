@@ -1,4 +1,17 @@
-/* 页面基础 */
+/* ==UserStyle==
+@name         Warship Girls R Wiki (Chinese) Vector skin Fix
+@namespace    https://github.com/aunst
+@version      1.0.0
+@description  "修复舰R百科中Vector皮肤的显示错误"
+@author       Aunst (http://github.com/aunst)
+@homepageURL  https://github.com/Aunst/WSGR-Wiki-Vector-skin-Fix.css
+@license      MIT
+@preprocessor default
+==/UserStyle== */
+/* 样式灵感来源于: https://zh.moegirl.org.cn/MediaWiki:Gadget-desktop-styles.css */
+
+@-moz-document domain("zjsnrwiki.com") {
+/* 页面基础, 可能并不必要 */
 .skin-vector-legacy #mw-page-base {
   background-image: none;
   background-color: transparent;
@@ -25,16 +38,24 @@
 
 /* 选项卡选项 */
 /* 提供半透明的渐变效果 */
+/* 一般选项卡和下拉菜单 */
 .vector-menu-tabs li, .vector-menu-dropdown {
-  background-color: transparent;
-  background-image: linear-gradient(to top, rgb(167, 215, 249) 1px ,rgb(196, 222, 237) 1px, rgba(232, 242, 248, 0.8) 50%, rgba(235, 244, 249, 0.5) 75%, transparent);
+  background-color: transparent; /* 移除白色背景 */
+  background-image: linear-gradient(to top, rgb(167, 215, 249) 1px ,rgb(196, 222, 237) 1px, rgba(232, 242, 248, 0.75) 50%, rgba(235, 244, 249, 0.5) 75%, transparent);
 }
+/* 已选择选项卡 */
 .vector-menu-tabs .selected {
-  background-color: transparent;
-  background-image: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0.5) 75%, transparent);
+  background-color: transparent; /* 移除白色背景 */
+  background-image: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.5) 75%, transparent);
 }
+/* 下拉菜单的内容 */
 .vector-menu-dropdown .vector-menu-content-list {
   background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* 搜索框 */
+#searchInput {
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 /* 主体 */
@@ -43,7 +64,9 @@
   background-color: rgba(255, 255, 255, 0.8);
   background-image: linear-gradient(to bottom, rgb(255, 255, 255), transparent 1.5em); /* 使选项卡和主体的连接部不那么突兀 */
 }
+}
 
+@-moz-document domain("zjsnrwiki.com") {
 /* CollapsibleVector 扩展修复
  * MediaWiki 1.35后, 左侧导航栏的小三角形图标变成了一条线...
  * 这是一个解决方法。
@@ -51,4 +74,5 @@
 #mw-panel.collapsible-nav .portal h3 {
   background-size: inherit;
   padding: 4px 0 5px 1.5em; /* 这条用于优化对齐, 不要也行 */
+}
 }
