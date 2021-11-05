@@ -10,9 +10,14 @@
 
 ## 使用
 1. 在浏览器中安装用户样式管理器 (我用的是 [Stylus](https://add0n.com/stylus.html));
-2. 访问在 [占位] , 安装 (点击 *Install*) ;
+2. 访问[本样式在Userstyles.world中的发布页面](https://userstyles.world/style/1331) , 安装 (点击 *Install*) ;<!--   * 事实上, 点击本发布页的 `styles.css` , 然后点 *Raw* 也行。不过, 依然推荐在 Userstyles.world 安装样式, 因为其访问稳定性更好。-->
 3. 在新弹出的标签页中确认, 确认无误后安装;
 4. 享受吧!
 
+## 浏览器支持
+能准确无误地显示Vector皮肤的浏览器就应该支持本用户样式。
+
+任何现代的浏览器应该都支持此用户样式。
+
 ## 截图
-未找到图像。
+![舰R百科的首页, 使用Vector皮肤, 带有修复样式 (本样式)](https://userstyles.world/api/style/preview/1331.jpeg)
