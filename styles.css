@@ -122,6 +122,7 @@ body.skin-vector:not(.skin-vector-legacy) #p-personal {
 @-moz-document domain("zjsnrwiki.com") {
 /* 首页最后的 "最新词条" 会溢出主体区域...
  * 尝试修了下。
+ * 很简单的技巧, 加个 :after 伪元素, 设置为块元素, 然后 clear:both 。
 */
 .countdown:after {
   content: "";
