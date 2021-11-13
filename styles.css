@@ -10,32 +10,14 @@
 ==/UserStyle== */
 /* 样式灵感来源于: https://zh.moegirl.org.cn/MediaWiki:Gadget-desktop-styles.css */
 
+/* 一些CSS选择器:
+ * body.skin-vector — 仅在使用 Vector 皮肤时生效
+ * body.skin-vector-legacy — 仅在使用旧版 Vector 皮肤时生效
+ * body.skin-vector:not(.skin-vector-legacy) — 仅在使用新版 Vector 皮肤时生效
+*/
+
 @-moz-document domain("zjsnrwiki.com") {
-/* 页面基础, 可能并不必要 */
-.skin-vector-legacy #mw-page-base {
-  background-image: none;
-  background-color: transparent;
-}
-/* 个人栏 */
-/* 移除个人栏文本的阴影, 因为效果不是太好 */
-#p-personal {
-  text-shadow: none;
-}
-
-/* 个人栏 "浮动" 效果 */
-.skin-vector-legacy #p-personal {
-  margin-top: 0.5em;
-  padding: 0.4em 0.8em 0.4em 0;
-  background-color: rgba(255, 255, 255, 0.75);
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.4);
-}
-
-/* 左右选项卡 */
-/* 增加上边距, 为更改后的个人栏提供空间 */
-.skin-vector-legacy #left-navigation, .skin-vector-legacy #right-navigation {
-  margin-top: 4em;
-}
-
+/* 通用样式 */
 /* 选项卡选项 */
 /* 提供半透明的渐变效果 */
 /* 一般选项卡和下拉菜单 */
@@ -58,11 +40,71 @@
   background-color: rgba(255, 255, 255, 0.7);
 }
 
+/* 旧版 Vector 特有样式 */
+/* 页面基础, 可能并不必要 */
+body.skin-vector-legacy #mw-page-base {
+  background-image: none;
+  background-color: transparent;
+}
+
+/* 个人栏 */
+/* 移除个人栏文本的阴影, 因为效果不是太好 */
+#p-personal {
+  text-shadow: none;
+}
+
+/* 个人栏 "浮动" 效果 */
+body.skin-vector-legacy #p-personal {
+  margin-top: 0.5em;
+  padding: 0.4em 0.8em 0.4em 0;
+  background-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.4);
+}
+
+/* 左右选项卡 */
+/* 增加上边距, 为更改后的个人栏提供空间 */
+body.skin-vector-legacy #left-navigation, .skin-vector-legacy #right-navigation {
+  margin-top: 4em;
+}
+
 /* 主体 */
-.skin-vector-legacy .mw-body {
+body.skin-vector-legacy .mw-body {
   margin-top: calc(1.5em - 1px); /* 增加上边距, 为更改后的左右导航栏提供空间, -1px 是为了使左右选项卡的渐变覆盖上边框。 */
   background-color: rgba(255, 255, 255, 0.8);
-  background-image: linear-gradient(to bottom, rgb(255, 255, 255), transparent 1.5em); /* 使选项卡和主体的连接部不那么突兀 */
+  background-image: linear-gradient(to bottom, white, transparent 1.5em); /* 使选项卡和主体的连接部不那么突兀 */
+}
+
+/* 新版Vector特有样式 */
+/* 给顶部栏添加白色背景和阴影, 改变边距以使顶部栏贴合页面顶部。
+ * 阴影部分的CSS样式来自于 Material Components for Web, 遵守 MIT 协议。
+ ** 源: https://unpkg.com/material-components-web@13.0.0/dist/material-components-web.css
+ ** GitHub: https://github.com/material-components/material-components-web
+ ** 协议详情: https://github.com/material-components/material-components-web/blob/master/LICENSE
+*/
+body.skin-vector:not(.skin-vector-legacy) .mw-header {
+  margin-top: 0;
+  padding: 0.25em 1.5em;
+
+  background: rgba(255, 255, 255, 0.75);
+
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); /* .mdc-elevation--z4 */
+}
+
+/* 使侧面的 "Switch to old look" 融入左侧导航栏 , 我始终搞不懂MediaWiki为啥把这玩意单独提出来 */
+body.skin-vector:not(.skin-vector-legacy) .mw-sidebar-action {
+  margin: 0 0.6em 0 0.7em;
+  padding: 8px 0 8px 0.7em;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* 使选项卡和主体的连接部不那么突兀 */
+body.skin-vector:not(.skin-vector-legacy) .mw-body {
+  background-image: linear-gradient(to bottom, white, transparent 1.5em);
+}
+
+/* 增加个人栏的顶部边距 */
+body.skin-vector:not(.skin-vector-legacy) #p-personal {
+  margin-top: 0.75em;
 }
 }
 
@@ -70,9 +112,20 @@
 /* CollapsibleVector 扩展修复
  * MediaWiki 1.35后, 左侧导航栏的小三角形图标变成了一条线...
  * 这是一个解决方法。
- */
+*/
 #mw-panel.collapsible-nav .portal h3 {
   background-size: inherit;
   padding: 4px 0 5px 1.5em; /* 这条用于优化对齐, 不要也行 */
+}
+}
+
+@-moz-document domain("zjsnrwiki.com") {
+/* 首页最后的 "最新词条" 会溢出主体区域...
+ * 尝试修了下。
+*/
+.countdown:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 }
