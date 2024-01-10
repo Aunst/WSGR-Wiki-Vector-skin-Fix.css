@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name         Warship Girls R Wiki (Chinese) Vector skin Fix
 @namespace    https://github.com/aunst
-@version      1.1.0
+@version      1.2.0
 @description  "修复舰R百科中Vector皮肤的显示错误"
 @author       Aunst (http://github.com/aunst)
 @homepageURL  https://github.com/Aunst/WSGR-Wiki-Vector-skin-Fix.css
@@ -15,96 +15,77 @@
  * body.skin-vector-legacy — 仅在使用旧版 Vector 皮肤时生效
  * body.skin-vector:not(.skin-vector-legacy) — 仅在使用新版 Vector 皮肤时生效
 */
-
 @-moz-document domain("zjsnrwiki.com") {
-/* 通用样式 */
-/* 选项卡选项 */
-/* 提供半透明的渐变效果 */
-/* 一般选项卡和下拉菜单 */
-.vector-menu-tabs li, .vector-menu-dropdown {
-  background-color: transparent; /* 移除白色背景 */
-  background-image: linear-gradient(to top, rgb(167, 215, 249) 1px ,rgb(196, 222, 237) 1px, rgba(232, 242, 248, 0.75) 50%, rgba(235, 244, 249, 0.5) 75%, transparent);
-}
-/* 已选择选项卡 */
-.vector-menu-tabs .selected {
-  background-color: transparent; /* 移除白色背景 */
-  background-image: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.5) 75%, transparent);
-}
-/* 下拉菜单的内容 */
-.vector-menu-dropdown .vector-menu-content-list {
-  background-color: rgba(255, 255, 255, 0.75);
-}
+@media screen {
+  /* 页面基础, 可能并不必要 */
+  body.skin-vector-legacy #mw-page-base {
+    background-image: none;
+    background-color: transparent;
+  }
 
-/* 搜索框 */
-#searchInput {
-  background-color: rgba(255, 255, 255, 0.7);
-}
+  /* 个人栏 */
+  /* 移除个人栏文本的阴影, 因为效果不是太好 */
+  body.skin-vector-legacy #p-personal {
+    text-shadow: none;
+  }
+  
+  body.skin-vector-legacy #p-personal ul {
+    padding-left: 0;
+  }
+  
+  body.skin-vector-legacy #p-personal .vector-menu-content-list {
+    background-color: initial;
+  }
 
-/* 旧版 Vector 特有样式 */
-/* 页面基础, 可能并不必要 */
-body.skin-vector-legacy #mw-page-base {
-  background-image: none;
-  background-color: transparent;
-}
+  /* 个人栏 "浮动" 效果 */
+  body.skin-vector-legacy #p-personal {
+    margin-top: 0.5em;
+    padding: 0.4em 0.8em;
+    background-color: rgba(255, 255, 255, 0.75);
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.4);
+  }
 
-/* 个人栏 */
-/* 移除个人栏文本的阴影, 因为效果不是太好 */
-#p-personal {
-  text-shadow: none;
-}
+  /* 左右选项卡 */
+  /* 增加上边距, 为更改后的个人栏提供空间 */
+  body.skin-vector-legacy #left-navigation,
+  body.skin-vector-legacy #right-navigation {
+    margin-top: 4em;
+  }
 
-/* 个人栏 "浮动" 效果 */
-body.skin-vector-legacy #p-personal {
-  margin-top: 0.5em;
-  padding: 0.4em 0.8em 0.4em 0;
-  background-color: rgba(255, 255, 255, 0.75);
-  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.4);
-}
+  /* 选项卡选项 */
+  /* 提供半透明的渐变效果 */
+  /* 一般选项卡和下拉菜单 */
+  .vector-menu-tabs-legacy li,
+  body.skin-vector-legacy .vector-menu-dropdown,
+  body.skin-vector-legacy #p-cactions {
+    background-color: transparent; /* 移除白色背景 */
+    background-image: linear-gradient(to top, rgb(167, 215, 249) 1px, rgb(196, 222, 237) 1px, rgba(232, 242, 248, 0.75) 50%, rgba(235, 244, 249, 0.5) 75%, transparent);
+  }
 
-/* 左右选项卡 */
-/* 增加上边距, 为更改后的个人栏提供空间 */
-body.skin-vector-legacy #left-navigation, .skin-vector-legacy #right-navigation {
-  margin-top: 4em;
-}
+  /* 已选择选项卡 */
+  .vector-menu-tabs-legacy .selected {
+    background-color: transparent; /* 移除白色背景 */
+    background-image: linear-gradient(to top, rgb(255, 255, 255), rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.5) 75%, transparent);
+  }
 
-/* 主体 */
-body.skin-vector-legacy .mw-body {
-  margin-top: calc(1.5em - 1px); /* 增加上边距, 为更改后的左右导航栏提供空间, -1px 是为了使左右选项卡的渐变覆盖上边框。 */
-  background-color: rgba(255, 255, 255, 0.8);
-  background-image: linear-gradient(to bottom, white, transparent 1.5em); /* 使选项卡和主体的连接部不那么突兀 */
-}
+  /* 下拉菜单的内容 */
+  .vector-menu-tabs-legacy .vector-menu-dropdown .vector-menu-content-list {
+    background-color: rgba(255, 255, 255, 0.75);
+  }
 
-/* 新版Vector特有样式 */
-/* 给顶部栏添加白色背景和阴影, 改变边距以使顶部栏贴合页面顶部。
- * 阴影部分的CSS样式来自于 Material Components for Web, 遵守 MIT 协议。
- ** 源: https://unpkg.com/material-components-web@13.0.0/dist/material-components-web.css
- ** GitHub: https://github.com/material-components/material-components-web
- ** 协议详情: https://github.com/material-components/material-components-web/blob/master/LICENSE
-*/
-body.skin-vector:not(.skin-vector-legacy) .mw-header {
-  margin-top: 0;
-  padding: 0.25em 1.5em;
+  /* 搜索框 */
+  body.skin-vector-legacy #searchInput {
+    background-color: rgba(255, 255, 255, 0.7);
+  }
 
-  background: rgba(255, 255, 255, 0.75);
-
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12); /* .mdc-elevation--z4 */
-}
-
-/* 使侧面的 "Switch to old look" 融入左侧导航栏 , 我始终搞不懂MediaWiki为啥把这玩意单独提出来 */
-body.skin-vector:not(.skin-vector-legacy) .mw-sidebar-action {
-  margin: 0 0.6em 0 0.7em;
-  padding: 8px 0 8px 0.7em;
-  background-color: rgba(255, 255, 255, 0.75);
-}
-
-/* 使选项卡和主体的连接部不那么突兀 */
-body.skin-vector:not(.skin-vector-legacy) .mw-body {
-  background-image: linear-gradient(to bottom, white, transparent 1.5em);
-}
-
-/* 增加个人栏的顶部边距 */
-body.skin-vector:not(.skin-vector-legacy) #p-personal {
-  margin-top: 0.75em;
+  /* 主体 */
+  body.skin-vector-legacy .mw-body {
+    margin-top: calc(1.5em - 1px);
+    /* 增加上边距, 为更改后的左右导航栏提供空间, -1px 是为了使左右选项卡的渐变覆盖上边框。 */
+    background-color: rgba(255, 255, 255, 0.8);
+    background-image: linear-gradient(to bottom, white, transparent 1.5em);
+    /* 使选项卡和主体的连接部不那么突兀 */
+  }
 }
 }
 
@@ -115,7 +96,8 @@ body.skin-vector:not(.skin-vector-legacy) #p-personal {
 */
 #mw-panel.collapsible-nav .portal h3 {
   background-size: inherit;
-  padding: 4px 0 5px 1.5em; /* 这条用于优化对齐, 不要也行 */
+  padding: 4px 0 5px 1.5em;
+  /* 这条用于优化对齐, 不要也行 */
 }
 }
 
